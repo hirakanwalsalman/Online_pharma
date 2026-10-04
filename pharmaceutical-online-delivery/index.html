@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MediDeliver – Online Pharmacy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner" role="note">
+  <span>Karachi, Pakistan</span><span>Everyday care, made simpler</span>
+</div>
+<header class="navbar">
+  <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">+</span>MediDeliver</a>
+  <button id="menuBtn" class="menu-btn" aria-label="Menu">☰</button>
+  <nav id="nav">
+    <a href="#medicines">Medicines</a>
+    <a href="#cart">Cart <span class="cart-count" id="cartCount">0</span></a>
+    <a href="#checkout">How to order</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">YOUR HEALTH, A LITTLE SIMPLER</span>
+      <h1>Everyday care,<br>made <span>more convenient.</span></h1>
+      <p>Find everyday health essentials in one simple place. Browse the catalogue, check product details and review your order before checkout.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#medicines">Explore medicines <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="#checkout">How ordering works</a>
+      </div>
+      <small class="hero-caption">A considered way to shop for everyday health essentials.</small>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+      <div class="hero-product">
+        <span class="product-cross">+</span>
+        <span class="product-name">MEDIDELIVER</span>
+        <strong>Care for<br>every day.</strong>
+        <span class="product-detail">HEALTH &amp; WELLNESS</span>
+      </div>
+      <div class="art-pill pill-top">Thoughtful care <span>✳</span></div>
+      <div class="art-pill pill-bottom"><span class="status-dot"></span> Browse with confidence</div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="benefits" aria-label="Shopping features">
+    <article><span class="benefit-icon">01</span><div><strong>Easy to explore</strong><span>Browse by category or search</span></div></article>
+    <article><span class="benefit-icon">02</span><div><strong>Clear product details</strong><span>See important item information</span></div></article>
+    <article><span class="benefit-icon">03</span><div><strong>Prescription-aware</strong><span>Prescription items are marked</span></div></article>
+    <article><span class="benefit-icon">04</span><div><strong>Review before checkout</strong><span>See your order total up front</span></div></article>
+  </section>
+
+  <section id="medicines">
+    <div class="section-heading">
+      <div><span class="eyebrow">THE COLLECTION</span><h2>Health essentials</h2><p>Explore the catalogue and find what you need.</p></div>
+      <span class="catalogue-note">Prices shown in PKR</span>
+    </div>
+    <div class="filters">
+      <input id="searchInput" type="search" placeholder="Search medicines...">
+      <select id="categoryFilter"><option value="">All Categories</option></select>
+      <select id="availabilityFilter">
+        <option value="">All availability</option>
+        <option value="in">In Stock</option>
+        <option value="out">Out of Stock</option>
+      </select>
+      <select id="rxFilter">
+        <option value="">Prescription: any</option>
+        <option value="yes">Prescription required</option>
+        <option value="no">No prescription</option>
+      </select>
+    </div>
+    <div id="message" class="msg" hidden></div>
+    <div id="medicineGrid" class="grid"></div>
+  </section>
+
+  <section id="prescriptionReview" class="prescription-review" hidden>
+    <div class="section-heading">
+      <div><span class="eyebrow">PHARMACIST REVIEW</span><h2>Submit your prescription</h2><p id="prescriptionProduct">Complete the details below to request a review.</p></div>
+    </div>
+    <div class="review-layout">
+      <form id="prescriptionRequestForm">
+        <label>Full Name *<input name="name" autocomplete="name" required></label>
+        <label>Email *<input name="email" type="email" autocomplete="email" required></label>
+        <label>Phone *<input name="phone" type="tel" autocomplete="tel" placeholder="03XXXXXXXXX" required></label>
+        <label>Prescription file *<input type="file" id="requestRxFile" accept=".jpg,.jpeg,.png,.pdf" required></label>
+        <label class="consent-label"><input type="checkbox" name="consent" required>I confirm I am authorized to share this prescription for review and have read the <a href="privacy.html">Privacy Policy</a>.</label>
+        <small>Accepted: JPG, PNG or PDF, up to 5 MB. Your file is stored privately for review.</small>
+        <div id="prescriptionRequestError" class="msg error" hidden></div>
+        <button class="btn" id="submitPrescriptionBtn" type="submit">Submit for pharmacist review</button>
+      </form>
+      <aside class="review-steps">
+        <h3>What happens next?</h3>
+        <ol>
+          <li><strong>Upload</strong><span>Send a clear image or PDF of your valid prescription.</span></li>
+          <li><strong>Review</strong><span>A pharmacist checks the prescription and requested medicine.</span></li>
+          <li><strong>Continue</strong><span>If approved, add the medicine to your cart and continue to checkout.</span></li>
+        </ol>
+        <p>Submitting a file does not mean it is approved. Do not stop or change prescribed treatment based on this website.</p>
+      </aside>
+    </div>
+    <div id="prescriptionRequestConfirmation" class="msg success" hidden></div>
+  </section>
+
+  <section id="cart">
+    <div class="section-heading"><div><span class="eyebrow">YOUR SELECTION</span><h2>Your cart</h2><p>Review your selected items before continuing.</p></div></div>
+    <div id="cartItems"></div>
+    <div class="row-actions">
+      <a class="btn secondary" href="#medicines">Continue shopping</a>
+      <a class="btn" href="#checkout" id="toCheckout">Proceed to checkout</a>
+    </div>
+  </section>
+
+  <section id="checkout">
+    <div class="section-heading"><div><span class="eyebrow">ALMOST THERE</span><h2>Review your order</h2><p>Enter delivery details to continue with your order.</p></div></div>
+    <div class="checkout-wrap">
+      <form id="checkoutForm" novalidate>
+        <label>Full Name *<input name="name" required></label>
+        <label>Email *<input name="email" type="email" required></label>
+        <label>Phone * (e.g. 03001234567)<input name="phone" type="tel" required></label>
+        <label>Delivery Address *<input name="address" required></label>
+        <label>City *<input name="city" required></label>
+        <label>Postal Code<input name="postal"></label>
+        <label>Additional Notes<textarea name="notes" rows="2"></textarea></label>
+
+        <div id="rxBox" class="rx" hidden>
+          <strong>Pharmacist approval required</strong>
+          <p>Prescription medicines can only be checked out after a pharmacist approves the submitted prescription.</p>
+        </div>
+        <div id="formError" class="msg error" hidden></div>
+        <button class="btn" id="placeOrderBtn" type="submit">Place Order</button>
+      </form>
+      <aside id="orderSummary" class="summary"></aside>
+    </div>
+    <div id="confirmation" class="msg success" hidden></div>
+  </section>
+
+  <section id="admin" class="staff-section">
+    <details>
+      <summary>Pharmacist sign in</summary>
+      <p class="note">Prescription decisions must be made only by an authorized, qualified pharmacist.</p>
+    <form id="loginForm" class="inline">
+      <input id="adminEmail" type="email" placeholder="Admin email" required>
+      <input id="adminPassword" type="password" placeholder="Password" required>
+      <button class="btn" type="submit">Sign in</button>
+    </form>
+    <button id="logoutBtn" class="btn secondary" hidden>Sign out</button>
+    <div id="prescriptionRequestList"></div>
+    <div id="orderList"></div>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">+</span>MediDeliver</a><p>Everyday care, made more convenient.</p></div>
+  <nav class="footer-links" aria-label="Information and policies">
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+    <a href="returns.html">Return &amp; Refund Policy</a>
+    <a href="prescription-policy.html">Prescription Policy</a>
+    <a href="#admin">Pharmacist sign in</a>
+  </nav>
+  <div class="footer-bottom"><span>© 2026 MediDeliver. All rights reserved.</span><span>Karachi, Pakistan</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
